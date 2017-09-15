@@ -1,2 +1,2 @@
-[ubuntu]
-ubuntu01
+[targets]
+localhost       ansible_connection=local

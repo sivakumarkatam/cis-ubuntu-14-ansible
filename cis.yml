@@ -5,6 +5,6 @@
   become: yes
   user: provisioner
   roles:
-    - { role: cis, when: ansible_distribution=="Ubuntu" and ansible_distribution_version=="14.04" }
+    -cis
 
 # vim: set sw=2 ts=2:

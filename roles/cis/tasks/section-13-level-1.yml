@@ -258,14 +258,45 @@
     - section13.19
     - manual_remediation
 
-- name: 13.20 Ensure shadow group is empty (Scored)
-  shell: grep ^shadow /etc/group && awk -F':' '($4 == "<shadow-gid>") { print }' /etc/passwd
-  register: command_result
-  failed_when: 'command_result.stdout != ""'
-  ignore_errors: yes
+#- name: 13.20 Ensure shadow group is empty (Scored)
+#  shell: grep ^shadow /etc/group && awk -F':' '($4 == "<shadow-gid>") { print }' /etc/passwd
+#  register: command_result
+#  failed_when: 'command_result.stdout != ""'
+#  ignore_errors: yes
+#  tags:
+#    - scored
+#    - section13.20
+#    - manual_remediation
+
+- name: 13.20 Ensure shadow group is empty (check) (Scored)
+  shell: grep '^shadow' /etc/group | cut -f4 -d':'
+  register: shadow_group_empty
+  failed_when: shadow_group_empty.stdout != ''
+  changed_when: False
+  always_run: True
   tags:
     - scored
     - section13.20
-    - manual_remediation
 
+- name: 13.21 Ensure shadow group is empty (check) (Scored)
+  shell: grep '^shadow' /etc/group | cut -f1 -d':'
+  register: shadow_group_id
+  failed_when: False
+  changed_when: False
+  always_run: True
+  tags:
+    - scored
+    - section13.21
+#      - section13.20.1
+
+- name: 13.22 Ensure shadow group is empty (check) (Scored)
+  shell: awk -F':' '($4 == "{{ item }}") { print }' /etc/passwd
+  register: awk_passwd_shadow
+  with_items: "{{shadow_group_id.stdout_lines}}"
+  changed_when: False
+  failed_when: awk_passwd_shadow.stdout != ''
+  always_run: True
+  tags:
+    - scored
+    - section13.22
 # vim: set sw=2 ts=2:

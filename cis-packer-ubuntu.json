@@ -23,7 +23,6 @@
 },
    {
     "type": "ansible-local",
-    "user": "root",
     "playbook_file": "cis.yml",
     "role_paths": [
             "roles/cis"
@@ -35,7 +34,6 @@
  },
    {
     "type": "ansible-local",
-    "user": "root",
     "playbook_file": "cis.yml",
     "role_paths": [
             "roles/cis"

@@ -1,6 +1,7 @@
 
 #! /bin/bash
 sudo su -
+cd /home/ubuntu
 echo "UBUNTU HARDENING TESTS AS PER CIS BENCHMARK DOCUMENT" >> hardeningtests.txt
 echo " " >> hardeningtests.txt
 #apt-get update -y
@@ -153,6 +154,7 @@ echo " " >> hardeningtests.txt
 echo " " >> hardeningtests.txt
 
 echo "2.25 Disable Automounting - Scored" >> hardeningtests.txt
+sudo su -
 initctl show-config autofs >> hardeningtests.txt
 echo "Desired State: autofs" >> hardeningtests.txt
 echo "NOTE: Ensure no start conditions listed for autofs:" >> hardeningtests.txt
@@ -164,6 +166,7 @@ echo " " >> hardeningtests.txt
 echo "3 SECURE BOOT SETTINGS" >> hardeningtests.txt
 echo "According to Alastair - This section is not applicable as the servers are all virtual servers" >> hardeningtests.txt
 echo "Check for Root Password" >> hardeningtests.txt
+sudo su -
 grep ^root:[*\!]: /etc/shadow  >> hardeningtests.txt
 echo "Desired State: No Results should be returned" >> hardeningtests.txt
 echo " " >> hardeningtests.txt
@@ -177,6 +180,7 @@ echo " " >> hardeningtests.txt
 echo "Command: grep hard core /etc/security/limits.conf" >> hardeningtests.txt
 echo "Desired Output: * hard core 0" >> hardeningtests.txt
 echo "Actual Output" >> hardeningtests.txt
+sudo su -
 grep -r "hard core" /etc/security/ >> hardeningtests.txt
 echo " " >> hardeningtests.txt
 echo " " >> hardeningtests.txt
@@ -184,6 +188,7 @@ echo " " >> hardeningtests.txt
 echo "Command: sysctl fs.suid_dumpable" >> hardeningtests.txt
 echo "Desired Output: fs.suid_dumpable = 0" >> hardeningtests.txt
 echo "Actual Output" >> hardeningtests.txt
+sudo su -
 sysctl fs.suid_dumpable >> hardeningtests.txt
 echo " " >> hardeningtests.txt
 echo " " >> hardeningtests.txt
@@ -192,6 +197,7 @@ echo " " >> hardeningtests.txt
 echo "Command: initctl show-config apport" >> hardeningtests.txt
 echo "Desired Output: - File not found" >> hardeningtests.txt
 echo "Actual Output" >> hardeningtests.txt
+sudo su -
 initctl show-configapport >> hardeningtests.txt
 echo " " >> hardeningtests.txt
 
@@ -225,7 +231,7 @@ echo " " >> hardeningtests.txt
 
 
 # 5 OS Services
-
+<<COMMENT1
 echo "5 OS Services- 5.1 Ensure Legacy Services are Not Enabled" >> hardeningtests.txt
 dpkg -s nis >> hardeningtests.txt
 grep ^shell /etc/inetd.conf >> hardeningtests.txt
@@ -265,7 +271,7 @@ ls /etc/rc*.d/S*snmpd >> hardeningtests.txt
 netstat -an | grep LIST | grep ":25[[:space:]]" >> hardeningtests.txt
 grep ^RSYNC_ENABLE /etc/default/rsync >> hardeningtests.txt
 dpkg -s biosdevname >> hardeningtests.txt
-
+COMMENT1
 
 # 7 Network Configuration and Firewalls - Tests
 echo "7 Network Configuration and Firewalls" >> hardeningtests.txt
@@ -1045,7 +1051,7 @@ echo " " >> hardeningtests.txt
 
 
 
-
+<<COMMENT2
 # Section 13 Tests
 echo "13.1 Ensure Password Fields are Not Empty - Scored" >> hardeningtests.txt
 echo "Desired Output: No Output" >> hardeningtests.txt
@@ -1353,3 +1359,4 @@ rpm -qa >> services-ports-daemons.txt
 #SHOW USERS ON SYSTEM AND PASSWORD EXPIRY
 echo "Show Users on System and Password Expiry" >> hardeningtests.txt
 cut -f 1 -d: /etc/passwd | xargs -n 1 -I {} bash -c " echo {} ; chage -l {}" >> hardeningtests.txt
+COMMENT2

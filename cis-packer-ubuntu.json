@@ -21,7 +21,17 @@
   "script": "script.sh",
   "pause_before": "10s"
 },
-
+   {
+    "type": "ansible-local",
+    "playbook_file": "cis.yml",
+    "role_paths": [
+            "roles/cis"
+      ],
+    "extra_arguments": [
+      "-t",
+      "section6"
+    ]
+ },
    {
     "type": "ansible-local",
     "playbook_file": "cis.yml",

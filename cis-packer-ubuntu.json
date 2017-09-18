@@ -1,0 +1,33 @@
+{
+"builders": [{
+  "type": "amazon-ebs",
+  "region": "ap-southeast-1",
+  "source_ami": "ami-6f198a0c",
+  "instance_type": "t2.micro",
+  "vpc_id": "",
+  "subnet_id": "",
+  "ssh_username": "ubuntu",
+  "ami_name": "packer-CIS-Ubuntu{{timestamp}}",
+  "tags": {
+  "Application": "DevOps",
+  "Description": "demo for CIS-ansible-ubuntu",
+  "Donotstop": "true",
+  "Owner-Email": "siva.katam@blazeclan.com",
+  "ProjectCode": "demo code"
+}
+}],
+"provisioners": [{
+  "type": "shell",
+  "script": "script.sh",
+  "pause_before": "10s"
+},
+
+   {
+    "type": "ansible-local",
+    "playbook_file": "cis.yml",
+    "role_paths": [
+            "roles/cis"
+      ]
+  }
+]
+}

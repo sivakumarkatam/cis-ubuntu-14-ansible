@@ -1,11 +1,9 @@
----
-# file: cis.yml
-
 - hosts: all
+  accelerate: false
   become: yes
   become_method: sudo
   user: root
   roles:
-    -cis
+    - cis
 
 # vim: set sw=2 ts=2:

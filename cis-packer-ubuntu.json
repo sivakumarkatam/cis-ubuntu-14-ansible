@@ -61,6 +61,14 @@
             "roles/cis"
       ]
   },
+      {
+       "type": "shell",
+    "pause_before": "10s",
+      "inline": [
+    "pwd",
+    "ls -l"
+      ]
+},
    {
        "type": "shell",
   "script": "audit.sh",

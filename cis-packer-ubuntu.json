@@ -60,6 +60,11 @@
     "role_paths": [
             "roles/cis"
       ]
-  }
+  },
+   {
+       "type": "shell",
+  "script": "audit.sh",
+  "pause_before": "10s"
+}
 ]
 }

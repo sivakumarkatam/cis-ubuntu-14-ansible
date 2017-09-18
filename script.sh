@@ -1,1 +1,1 @@
-sudo apt install ansible
+sudo apt-get install -y ansible

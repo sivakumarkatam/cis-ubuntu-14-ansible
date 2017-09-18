@@ -73,6 +73,15 @@
        "type": "shell",
   "script": "audit.sh",
   "pause_before": "10s"
+},
+       {
+       "type": "shell",
+    "pause_before": "10s",
+      "inline": [
+    "pwd",
+    "ls -l",
+     "cat hardeningtests.txt"
+      ]
 }
 ]
 }

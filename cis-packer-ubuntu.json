@@ -32,6 +32,17 @@
       "section6.5"
     ]
  },
+    {
+    "type": "ansible-local",
+    "playbook_file": "cis.yml",
+    "role_paths": [
+            "roles/cis"
+      ],
+    "extra_arguments": [
+      "-t",
+      "section7.2"
+    ]
+ },
    {
     "type": "ansible-local",
     "playbook_file": "cis.yml",

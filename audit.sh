@@ -1,10 +1,10 @@
 
 #! /bin/bash
-
+sudo su -
 echo "UBUNTU HARDENING TESTS AS PER CIS BENCHMARK DOCUMENT" >> hardeningtests.txt
 echo " " >> hardeningtests.txt
-apt-get update -y
-apt-get upgrade -y
+#apt-get update -y
+#apt-get upgrade -y
 echo "1 PATCHING and SOFTWARE UPDATES " >> hardeningtests.txt
 echo "Update and Upgrade Completed" >> hardeningtests.txt
 echo " " >> hardeningtests.txt

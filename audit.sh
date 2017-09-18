@@ -247,6 +247,7 @@ grep ^time /etc/inetd.conf >> hardeningtests.txt
 # 6 Special Purpose Services Tests
 echo "6 Special Purpose Services Tests" >> hardeningtests.txt
 dpkg -l xserver-xorg-core* >> hardeningtests.txt
+sudo apt install -y upstart
 initctl show-config avahi-daemon >> hardeningtests.txt
 initctl show-config cups >> hardeningtests.txt
 initctl show-config isc-dhcp-server >> hardeningtests.txt

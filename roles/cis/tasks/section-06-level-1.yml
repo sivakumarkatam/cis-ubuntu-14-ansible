@@ -76,14 +76,14 @@
     - scored
     - section6.5
 
-- name: 6.5 Configure Network Time Protocol (NTP) (Scored)
-  lineinfile: regexp={{ item.regexp }} line={{ item.line }} dest=/etc/ntp.conf state=present
-  with_items:
-    - { regexp: "'^restrict -4'", line: "'restrict -4 default kod nomodify notrap nopeer noquery'" }
-    - { regexp: "'^restrict -6'", line: "'restrict -6 default kod nomodify notrap nopeer noquery'" }
-  tags:
-    - scored
-    - section6.5
+#- name: 6.5 Configure Network Time Protocol (NTP) (Scored)
+#  lineinfile: regexp={{ item.regexp }} line={{ item.line }} dest=/etc/ntp.conf state=present
+#  with_items:
+#   - { regexp: "'^restrict -4'", line: "'restrict -4 default kod nomodify notrap nopeer noquery'" }
+#   - { regexp: "'^restrict -6'", line: "'restrict -6 default kod nomodify notrap nopeer noquery'" }
+#  tags:
+#    - scored
+#    - section6.5
 
 - name: 6.6 Ensure LDAP is not enabled (Not Scored)
   apt: name=slapd purge=yes state=absent

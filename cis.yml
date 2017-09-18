@@ -3,7 +3,8 @@
 
 - hosts: all
   become: yes
-  user: provisioner
+  become_method: sudo
+  user: root
   roles:
     -cis
 

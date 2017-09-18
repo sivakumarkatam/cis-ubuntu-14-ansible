@@ -55,17 +55,17 @@
     - section9.1
     - section9.1.7
 
-- name: 9.1.8 Restrict at/cron to Authorized Users (Scored)
-  file: path={{ item.path }} owner=root group=root mode=0600 state={{ item.state }}
-  with_items:
-    - { path: "/etc/cron.deny", state: absent }
-    - { path: "/etc/at.deny", state: absent }
-    - { path: "/etc/cron.allow", state: touch }
-    - { path: "/etc/at.allow", state: touch }
-  tags:
-    - scored
-    - section9.1
-    - section9.1.8
+#- name: 9.1.8 Restrict at/cron to Authorized Users (Scored)
+#  file: path={{ item.path }} owner=root group=root mode=0600 state={{ item.state }}
+#  with_items:
+#    - { path: "/etc/cron.deny", state: absent }
+#    - { path: "/etc/at.deny", state: absent }
+#    - { path: "/etc/cron.allow", state: touch }
+#    - { path: "/etc/at.allow", state: touch }
+#  tags:
+#    - scored
+#    - section9.1
+#    - section9.1.8
 
 - name: 9.2 Configure PAM
   debug: msg="*** PAM (Pluggable Authentication Modules) is a service that implements modular authentication modules on UNIX systems"
@@ -185,27 +185,27 @@
     - section9.3
     - section9.3.11
 
-- name: 9.3.11 Use Only Approved Cipher in Counter Mode (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config line="{{item}}" state=present insertafter=EOF
-  with_items:
-    - "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160"
-    - "KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1"
-  notify: restart ssh
-  tags:
-    - scored
-    - section9.3
-    - section9.3.11
+#- name: 9.3.11 Use Only Approved Cipher in Counter Mode (Scored)
+#  lineinfile: dest=/etc/ssh/sshd_config line="{{item}}" state=present insertafter=EOF
+#  with_items:
+#    - "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160"
+#    - "KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1"
+#  notify: restart ssh
+#  tags:
+#    - scored
+#    - section9.3
+#    - section9.3.11
 
-- name: 9.3.12 Set Idle Timeout Interval for User Login (Scored)
-  lineinfile: dest=/etc/ssh/sshd_config regexp={{ item.regex }} line="{{item.line}}" state=present
-  with_items:
-    - { regex: "^ClientAliveInterval", line: "ClientAliveInterval 300" }
-    - { regex: "^ClientAliveCountMax", line: "ClientAliveCountMax 0" }
-  notify: restart ssh
-  tags:
-    - scored
-    - section9.3
-    - section9.3.12
+#- name: 9.3.12 Set Idle Timeout Interval for User Login (Scored)
+#  lineinfile: dest=/etc/ssh/sshd_config regexp={{ item.regex }} line="{{item.line}}" state=present
+#  with_items:
+#    - { regex: "^ClientAliveInterval", line: "ClientAliveInterval 300" }
+#    - { regex: "^ClientAliveCountMax", line: "ClientAliveCountMax 0" }
+#  notify: restart ssh
+#  tags:
+#    - scored
+#    - section9.3
+#    - section9.3.12
 
 - name: 9.3.13 Limit Access via SSH (Scored)
   debug: msg="*** Evaluate your infrastructure before limiting logins using AllowUsers, AllowGroups, DenyUsers or DenyGroups"

@@ -31,7 +31,7 @@
     - section7.2
 
 - name: 7.2.1 Disable Source Routed Packet Acceptance (Scored)
-  sysctl: name="{{item}}" value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present
+  sysctl: name="{{item}}" value=0 ignoreerrors=yes sysctl_set=yes reload=yes state=present user=root
   with_items:
     - net.ipv4.conf.all.accept_source_route
     - net.ipv4.conf.default.accept_source_route
